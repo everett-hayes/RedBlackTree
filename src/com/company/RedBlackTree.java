@@ -222,10 +222,8 @@ public class RedBlackTree {
         RedBlackNode y = null;
 
         if (z.left == null || z.right == null) {
-            System.out.println("if true");
             y = z;
         } else {
-            System.out.println("if false");
             y = treeSuccessor(z);
         }
 
