@@ -1,10 +1,29 @@
 package com.company;
 
+/* Academic Honesty Certification
+ * Written sources used:
+ * (Include textbook(s), complete citations for web or other written sources.
+ * Note that you are only allowed to use the web for syntax.
+ * Write "none" if no sources used.)
+ *
+ * none
+ *
+ * Help obtained: (Include names of anyone other than the instructor.)
+ *
+ * none
+ *
+ * My written or typed signature below confirms that the above list
+ * of sources is complete.
+ * Signatures:
+ *  Everett Hayes
+ *  Himanshu Bainwala
+ * */
 public class Main {
 
     public static void main(String[] args) {
 	    RedBlackTree tree = new RedBlackTree();
         RedBlackTreeTester tester = new RedBlackTreeTester();
+
 	    RedBlackNode temp = new RedBlackNode(43);
         RedBlackNode temp1 = new RedBlackNode(23);
         RedBlackNode temp2 = new RedBlackNode(27);
