@@ -12,6 +12,12 @@ public class RedBlackTree {
         this.root = x;
     }
 
+    /**
+     * procedure leftRotate()
+     * @param x, the node to left rotated
+     * purpose makes y the new root of the subtree with x as y's left child. y's left child as x's right child
+     * produces void (modified tree)
+     */
     private void leftRotate(RedBlackNode x) {
 
         RedBlackNode y = x.right;
@@ -35,6 +41,12 @@ public class RedBlackTree {
         x.parent = y;
     }
 
+    /**
+     * procedure rightRotate()
+     * @param x, the node to left rotated
+     * purpose makes y the new root of the subtree with x as y's right child. y's right child as x's left child
+     * produces void (modified tree)
+     */
     private void rightRotate(RedBlackNode x) {
 
         RedBlackNode y = x.left;
@@ -58,6 +70,12 @@ public class RedBlackTree {
         x.parent = y;
     }
 
+    /**
+     * procedure insert_fixup()
+     * @param z, the node to modified
+     * purpose restores the red black properties following a deletion
+     * produces void (modified tree)
+     */
     private void insert_fixup(RedBlackNode z) {
 
         while (z.parent != null && z.parent.isRed) {
@@ -101,6 +119,12 @@ public class RedBlackTree {
         root.isRed = false;
     }
 
+    /**
+     * procedure insert()
+     * @param z, the node to inserted
+     * purpose inserts the node into the tree maintaining the red black properties
+     * produces void (modified tree)
+     */
     void insert(RedBlackNode z) {
 
         RedBlackNode y = null;
@@ -134,6 +158,12 @@ public class RedBlackTree {
         insert_fixup(z);
     }
 
+    /**
+     * procedure delete_fixup()
+     * @param x, the node to be modified
+     * purpose maintains the red black properties following the node's deletion
+     * produces void (modified tree)
+     */
     private void delete_fixup(RedBlackNode x) {
 
         while (x != root && !x.isRed) {
@@ -151,12 +181,14 @@ public class RedBlackTree {
                 if (!w.left.isRed && !w.right.isRed) {
                     w.isRed = true;
                     x = x.parent;
-                } else if (!w.right.isRed) {
-                    w.left.isRed = false;
-                    w.isRed = true;
-                    rightRotate(w);
-                    w = x.parent.right;
                 } else {
+                    if (!w.right.isRed) {
+                        w.left.isRed = false;
+                        w.isRed = true;
+                        rightRotate(w);
+                        w = x.parent.right;
+                    }
+
                     w.isRed = x.parent.isRed;
                     x.parent.isRed = false;
                     w.right.isRed = false;
@@ -176,12 +208,14 @@ public class RedBlackTree {
                 if (!w.right.isRed && !w.left.isRed) {
                     w.isRed = true;
                     x = x.parent;
-                } else if (!w.left.isRed) {
-                    w.right.isRed = false;
-                    w.isRed = true;
-                    leftRotate(w);
-                    w = x.parent.left;
                 } else {
+                    if (!w.left.isRed) {
+                        w.right.isRed = false;
+                        w.isRed = true;
+                        leftRotate(w);
+                        w = x.parent.left;
+                    }
+
                     w.isRed = x.parent.isRed;
                     x.parent.isRed = false;
                     w.left.isRed = false;
@@ -192,6 +226,12 @@ public class RedBlackTree {
         }
     }
 
+    /**
+     * procedure treeMinimum()
+     * @param x, the root of the subtree in question
+     * purpose finds a pointer to the minimum element in the subtree rooted at x
+     * produces RedBlackNode
+     */
     RedBlackNode treeMinimum(RedBlackNode x) {
 
         while (x.left != null) {
@@ -201,6 +241,12 @@ public class RedBlackTree {
         return x;
     }
 
+    /**
+     * procedure treeSuccessor()
+     * @param x, the node which we search for a successor
+     * purpose finds the successor of a node x in a bst if it exists and NULL if x has the largest key in the tree
+     * produces RedBlackNode
+     */
     RedBlackNode treeSuccessor(RedBlackNode x) {
 
         if (x.right != null) {
@@ -217,6 +263,12 @@ public class RedBlackTree {
         return y;
     }
 
+    /**
+     * procedure delete()
+     * @param z, the node to deleted
+     * purpose deletes the node into the tree maintaining the red black properties
+     * produces void (modified tree)
+     */
     RedBlackNode delete(RedBlackNode z) {
 
         RedBlackNode y = null;
@@ -251,7 +303,7 @@ public class RedBlackTree {
             z.val = y.val;
         }
 
-        if (!y.isRed) {
+        if (!y.isRed && x != null) {
             delete_fixup(x);
         }
 

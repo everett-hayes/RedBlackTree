@@ -6,20 +6,24 @@ public class Main {
 	    RedBlackTree tree = new RedBlackTree();
         RedBlackTreeTester tester = new RedBlackTreeTester();
 	    RedBlackNode temp = new RedBlackNode(43);
+        RedBlackNode temp1 = new RedBlackNode(23);
+        RedBlackNode temp2 = new RedBlackNode(27);
+        RedBlackNode temp3 = new RedBlackNode(120);
 
         tree.insert(new RedBlackNode(8));
         tree.insert(new RedBlackNode(18));
         tree.insert(new RedBlackNode(5));
-        System.out.println(tester.testSuite(tree));
+        tester.testSuite(tree);
         tree.insert(new RedBlackNode(15));
         tree.insert(new RedBlackNode(17));
         tree.insert(temp);
-        System.out.println(tester.testSuite(tree));
+        tester.testSuite(tree);
         tree.insert(new RedBlackNode(25));
-        tree.insert(new RedBlackNode(40));
-        System.out.println(tester.testSuite(tree));
-        tree.insert(new RedBlackNode(80));
+        tree.insert(temp1);
+        tree.insert(new RedBlackNode(100));
+        tree.delete(temp1);
+        tester.testSuite(tree);
         tree.delete(temp);
-        System.out.println(tester.testSuite(tree));
+        tester.testSuite(tree);
     }
 }

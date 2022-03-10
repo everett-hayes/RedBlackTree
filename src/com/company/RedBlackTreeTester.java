@@ -5,8 +5,11 @@ import java.util.List;
 
 public class RedBlackTreeTester {
 
-    boolean testSuite(RedBlackTree tree) {
-        return rootIsBlack(tree) && noAdjacentRed(tree) && sameBlackPathLength(tree);
+    void testSuite(RedBlackTree tree) {
+        System.out.println("rootIsBlack: " + rootIsBlack(tree));
+        System.out.println("noAdjacentRed: " + noAdjacentRed(tree));
+        System.out.println("sameBlackPathLength: " + sameBlackPathLength(tree));
+        System.out.println("-------------------");
     }
 
     private boolean rootIsBlack(RedBlackTree tree) {
@@ -23,7 +26,7 @@ public class RedBlackTreeTester {
         sameBlackPathLengthHelper(tree.root, 0, lengths);
 
         for (int i = 1; i < lengths.size(); i++) {
-            if (lengths.get(i) != lengths.get(i-1)) {
+            if (!lengths.get(i).equals(lengths.get(i-1))) {
                 return false;
             }
         }
@@ -46,7 +49,7 @@ public class RedBlackTreeTester {
         }
 
         sameBlackPathLengthHelper(curr.left, height, list);
-        sameBlackPathLengthHelper(curr.left, height, list);
+        sameBlackPathLengthHelper(curr.right, height, list);
     }
 
     private boolean noAdjacentRedHelper(RedBlackNode node) {
